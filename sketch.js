@@ -10,4 +10,5 @@ function draw() {
   movimentaAtor();
   voltaPosicaoInicial();
   verificaColisao();
+  incluiPontos();
 }
