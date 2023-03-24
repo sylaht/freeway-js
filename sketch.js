@@ -5,12 +5,12 @@ function setup() {
 
 function draw() {
   background(imagemDaEstrada);
-  mostraAtor();
-  mostraCarro();
-  movimentaCarro();
-  movimentaAtor();
-  voltaPosicaoInicial();
-  verificaColisao();
-  incluiPontos();
-  marcaPonto();
+  showActor();
+  showCar();
+  moveCars();
+  moveActor();
+  currentPosition();
+  checkCollision();
+  includePoints();
+  scorePoints();
 }
