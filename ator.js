@@ -20,9 +20,13 @@ function moveActor() {
 }
 
 function checkCollision(){
+  const diameter = 15;
+  const xHitbox = xAtor + diameter;
+  const yHitbox = yAtor + diameter;
+
   // collideRectCircle(x1, y1 width1, height1, cx, cy, diameter)
   for (let i = 0; i < imagemCarros.length; i ++){
-   colisao = collideRectCircle(xCarros[i], yCarros[i], comprimentoCarro, alturaCarro, xAtor, yAtor, 15) 
+   colisao = collideRectCircle(xCarros[i], yCarros[i], comprimentoCarro, alturaCarro, xHitbox, yHitbox, diameter)
     if (colisao){
       colidiu();
       somColisao.play();
