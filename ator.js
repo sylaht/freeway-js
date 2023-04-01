@@ -10,56 +10,76 @@ function showActor() {
 
 function moveActor() {
   if (keyIsDown(UP_ARROW)) {
-    yAtor -= 3;
+    if (yAtor > 0) {
+      yAtor -= 3;
+    }
   }
   if (keyIsDown(DOWN_ARROW)) {
-    if(podeMover()){
+    if (podeMover() && yAtor < 400) {
       yAtor += 3;
+    }
+  }
+  if (keyIsDown(LEFT_ARROW)) {
+    if (xAtor > 0) {
+      xAtor -= 3;
+    }
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    if (xAtor + 30 <= 500) {
+      xAtor += 3;
     }
   }
 }
 
-function checkCollision(){
+function checkCollision() {
   const diameter = 15;
   const xHitbox = xAtor + diameter;
   const yHitbox = yAtor + diameter;
 
   // collideRectCircle(x1, y1 width1, height1, cx, cy, diameter)
-  for (let i = 0; i < imagemCarros.length; i ++){
-   colisao = collideRectCircle(xCarros[i], yCarros[i], comprimentoCarro, alturaCarro, xHitbox, yHitbox, diameter)
-    if (colisao){
+  for (let i = 0; i < imagemCarros.length; i++) {
+    colisao = collideRectCircle(
+      xCarros[i],
+      yCarros[i],
+      comprimentoCarro,
+      alturaCarro,
+      xHitbox,
+      yHitbox,
+      diameter
+    );
+    if (colisao) {
       colidiu();
       somColisao.play();
-      if(pontosMaiorZero()){
+      if (pontosMaiorZero()) {
         meusPontos -= 1;
       }
     }
   }
 }
 
-function colidiu(){
+function colidiu() {
   yAtor = 366;
 }
 
-function includePoints(){
-  textAlign(CENTER)
-  textSize(25)
-  fill(color(255, 240, 60))
+function includePoints() {
+  textAlign(CENTER);
+  textSize(25);
+  fill(color(255, 240, 60));
   text(meusPontos, width / 5, 27);
 }
 
 function scorePoints() {
-  if(yAtor < 15){
+  if (yAtor < 15) {
     meusPontos += 1;
     somPonto.play();
     colidiu();
-  } 
+  }
 }
 
-function pontosMaiorZero(){
-  return meusPontos > 0
+function pontosMaiorZero() {
+  return meusPontos > 0;
 }
 
-function podeMover(){
+function podeMover() {
   return yAtor < 366;
 }
